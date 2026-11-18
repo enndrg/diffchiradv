@@ -1,4 +1,4 @@
-# DiffChir : Automatisation du calcul de diffraction des surfaces chirales
+# DiffChir : Automatisation du calcul de diffraction des surfaces chirales -- PAS FINI
 
 **DiffChir** est un framework modulaire en Python conçu pour automatiser la simulation électromagnétique, l'analyse polarimétrique complète et l'optimisation inverse des métasurfaces et réseaux de diffraction chiraux.
 
