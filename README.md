@@ -1,14 +1,10 @@
-# ChiralDiffraction : Automatisation du calcul de diffraction des surfaces chirales
+# DiffChir : Automatisation du calcul de diffraction des surfaces chirales
 
-[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![Physics](https://img.shields.io/badge/Electromagnetics-RCWA%20%7C%20FDTD%20%7C%20FEM-teal.svg)]()
-
-**ChiralDiffraction** est un framework modulaire en Python conçu pour automatiser la simulation électromagnétique, l'analyse polarimétrique complète et l'optimisation inverse des métasurfaces et réseaux de diffraction chiraux.
+**DiffChir** est un framework modulaire en Python conçu pour automatiser la simulation électromagnétique, l'analyse polarimétrique complète et l'optimisation inverse des métasurfaces et réseaux de diffraction chiraux.
 
 ---
 
-## Table des matières
+## Sommaire
 - [Présentation et Contexte Physique](#présentation-et-contexte-physique)
 - [Fonctionnalités Clés](#fonctionnalités-clés)
 - [Architecture du Pipeline](#architecture-du-pipeline)
@@ -23,9 +19,9 @@
 
 ## Présentation et Contexte Physique
 
-Les surfaces chirales (gammadions, structures en L/Z, hélices 3D ou bicouches tournées / *twisted bilayers*) brisent les symétries miroir et d'inversion spatiale. En conséquence, elles interagissent différemment avec la lumière polarisée circulairement à gauche (**LCP**) et à droite (**RCP**), générant des effets de **dichroïsme circulaire ($CD$)** et d'**activité optique** distribués dans les différents ordres de diffraction $(m, n)$.
+Les surfaces chirales (gammadions, structures en L/Z, hélices 3D ou bicouches tournées) brisent les symétries miroir et d'inversion spatiale. En conséquence, elles interagissent différemment avec la lumière polarisée circulairement à gauche (**LCP**) et à droite (**RCP**), générant des effets de **dichroïsme circulaire ($CD$)** et d'**activité optique** distribués dans les différents ordres de diffraction $(m, n)$.
 
-Parce que la brisure de symétrie interdit toute réduction du domaine de calcul par des conditions aux limites symétriques ou antisymétriques, la simulation de la maille élémentaire complète en 3D est requise. **ChiralDiffraction** automatise l'ensemble de ce workflow : de la génération paramétrique de la maille jusqu'au stockage structuré des matrices de Jones et de Mueller.
+Parce que la brisure de symétrie interdit toute réduction du domaine de calcul par des conditions aux limites symétriques ou antisymétriques, la simulation de la maille élémentaire complète en 3D est requise. **DiffChir** automatise l'ensemble de ce workflow : de la génération paramétrique de la maille jusqu'au stockage structuré des matrices de Jones et de Mueller.
 
 ---
 
@@ -71,16 +67,14 @@ Parce que la brisure de symétrie interdit toute réduction du domaine de calcul
 
 ## Installation
 
-Clonez le dépôt et installez les dépendances principales :
-
 ```bash
-git clone https://github.com/votre-utilisateur/ChiralDiffraction.git
-cd ChiralDiffraction
+git clone https://github.com/votre-utilisateur/DiffChir.git
+cd DiffChir
 pip install -r requirements.txt
 ```
 
 ### Dépendances recommandées
-- **Cœur numérique :** `numpy`, `scipy`, `h5py`, `pydantic`
+- **Coeur :** `numpy`, `scipy`, `h5py`, `pydantic`
 - **Solveurs RCWA différentiables (optionnel) :** `torch`, `torcwa` ou `jax`, `fmmax`
 - **Parallélisation :** `joblib`, `mpi4py`
 
@@ -92,7 +86,7 @@ L'exemple ci-dessous montre comment configurer une surface périodique chirale, 
 
 ```python
 import numpy as np
-from chiral_diffraction import ChiralSurfaceConfig, ChiralDiffractionAnalyzer
+from chiral_diffraction import ChiralSurfaceConfig, DiffChirAnalyzer
 
 # 1. Configuration de la maille et de l'illumination
 config = ChiralSurfaceConfig(
@@ -107,7 +101,7 @@ config = ChiralSurfaceConfig(
 )
 
 # 2. Initialisation de l'analyseur polarimétrique
-analyzer = ChiralDiffractionAnalyzer(config)
+analyzer = DiffChirAnalyzer(config)
 
 # 3. Exemple de matrices de Jones linéaires J_T et J_R issues d'un solveur pour l'ordre (0, 0)
 J_T_lin = np.array([[0.65 + 0.1j, 0.12 - 0.08j],
@@ -157,7 +151,7 @@ $$CD_T^{(m,n)} = \frac{\left(T_{LL}^{(m,n)} + T_{RL}^{(m,n)}\right) - \left(T_{R
 ## Structure du Dépôt
 
 ```text
-ChiralDiffraction/
+DiffChir/
 ├── chiral_diffraction/
 │   ├── __init__.py
 │   ├── config.py          # Validation géométrique et dispersion des matériaux
@@ -179,4 +173,4 @@ ChiralDiffraction/
 
 ## Licence
 
-Ce projet est distribué sous licence **MIT**. Voir le fichier `LICENSE` pour plus de détails.
+on verra plus tard
