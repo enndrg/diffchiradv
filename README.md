@@ -1,6 +1,6 @@
-# DiffChir : Automatisation du calcul de diffraction des surfaces chirales -- PAS FINI
+# DiffChirADV : Automatisation du calcul de diffraction des surfaces chirales -- PAS FINI, version plus complexe de DIFFCHIR Scalaire
 
-**DiffChir** est un framework modulaire en Python conçu pour automatiser la simulation électromagnétique, l'analyse polarimétrique complète et l'optimisation inverse des métasurfaces et réseaux de diffraction chiraux.
+**DiffChirADV** est un framework modulaire en Python conçu pour automatiser la simulation électromagnétique, l'analyse polarimétrique complète et l'optimisation inverse des métasurfaces et réseaux de diffraction chiraux.
 
 ---
 
@@ -80,50 +80,8 @@ pip install -r requirements.txt
 
 ---
 
-## Utilisation Rapide
 
-L'exemple ci-dessous montre comment configurer une surface périodique chirale, analyser la sortie d'un solveur et extraire le dichroïsme circulaire par ordre de diffraction :
-
-```python
-import numpy as np
-from chiral_diffraction import ChiralSurfaceConfig, DiffChirAnalyzer
-
-# 1. Configuration de la maille et de l'illumination
-config = ChiralSurfaceConfig(
-    period_x=500.0,        # Période selon x (nm)
-    period_y=500.0,        # Période selon y (nm)
-    wavelength=650.0,      # Longueur d'onde incidente (nm)
-    n_superstrate=1.0,     # Milieu incident (Air)
-    n_substrate=1.45,      # Substrat (Silice)
-    theta_inc_deg=0.0,     # Incidence normale
-    phi_inc_deg=0.0,
-    fourier_orders=(9, 9)
-)
-
-# 2. Initialisation de l'analyseur polarimétrique
-analyzer = DiffChirAnalyzer(config)
-
-# 3. Exemple de matrices de Jones linéaires J_T et J_R issues d'un solveur pour l'ordre (0, 0)
-J_T_lin = np.array([[0.65 + 0.1j, 0.12 - 0.08j],
-                    [-0.12 + 0.08j, 0.65 + 0.1j]], dtype=np.complex128)
-J_R_lin = np.array([[0.15 + 0.02j, 0.01 + 0.01j],
-                    [-0.01 - 0.01j, 0.15 + 0.02j]], dtype=np.complex128)
-
-solver_output = {(0, 0): (J_T_lin, J_R_lin)}
-
-# 4. Extraction des observables chirales et vérification du bilan d'énergie
-results = analyzer.run_full_analysis(solver_output)
-
-order_00 = results["orders"][(0, 0)]
-print(f"Transmission LCP (T_L) : {order_00['T_L']:.4f}")
-print(f"Transmission RCP (T_R) : {order_00['T_R']:.4f}")
-print(f"Dichroïsme Circulaire (CD_T) : {order_00['CD_T']:.4f}")
-print(f"Bilan énergétique (LCP) : {results['energy_balance_L']:.4f}")
-```
-
----
-
-## Formulation Théorique Implémentée
+## Formulation Théorique (à) Implémenter
 
 ### 1. Changement de base Linéaire $\leftrightarrow$ Circulaire
 En convention harmonique $\exp(-i\omega t)$, la matrice de Jones dans la base circulaire $(L, R)$ est obtenue par similitude unitaire à partir de la base linéaire locale $(s, p)$ de chaque ordre $(m,n)$ :
