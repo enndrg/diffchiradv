@@ -68,7 +68,7 @@ Parce que la brisure de symétrie interdit toute réduction du domaine de calcul
 ## Installation
 
 ```bash
-git clone https://github.com/votre-utilisateur/DiffChir.git
+git clone https://github.com/enndrg/diffchir.git
 cd DiffChir
 pip install -r requirements.txt
 ```
